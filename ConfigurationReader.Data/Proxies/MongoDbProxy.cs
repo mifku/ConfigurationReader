@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -22,6 +23,7 @@ namespace ConfigurationReader.Data.Proxies
                 var mongoUrl = new MongoUrl(connectionString);
                 IMongoDatabase db = MongoDbClient.GetClient.GetDatabase(mongoUrl.DatabaseName);
                 var builder = Builders<ConfigurationEntity>.Filter;
+                var c = ConfigurationManager.AppSettings["ApplicationNameColumnName"];
                 var filter = builder.Eq(Constants.ApplicationNameColumn,serviceName) & builder.Eq(Constants.IsActiveColumn , ConfigurationActiveness.Active);
                 IMongoCollection<ConfigurationEntity> configCollection = db.GetCollection<ConfigurationEntity>(Constants.CollectionName);
                 Console.WriteLine(DateTime.Now.ToString() + " return collection");

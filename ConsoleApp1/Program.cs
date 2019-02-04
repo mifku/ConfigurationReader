@@ -2,7 +2,7 @@
 using System;
 using System.Timers;
 
-namespace ConsoleApp1
+namespace ConsoleTest
 {
     class Program
     {
@@ -10,8 +10,8 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             
-            Console.WriteLine("Hello World!");
-            cconfigReader = new ConfigurationReader.ConfigurationReader("SERVICE-A", "mongodb://127.0.0.1:27017/admin", 4000);
+           
+            cconfigReader = new ConfigurationReader.ConfigurationReader("consoletest" , "mongodb://127.0.0.1:27017/admin", 4000);
             
             do
             {
@@ -25,7 +25,7 @@ namespace ConsoleApp1
         {
             try
             {
-                Console.WriteLine($"{ DateTime.Now}  :     {cconfigReader.GetValue<string>("SiteName")}");
+                Console.WriteLine($"{ DateTime.Now}  :     {cconfigReader.GetValue<int>("SiteName")}");
             }
             catch (Exception e)
             {
